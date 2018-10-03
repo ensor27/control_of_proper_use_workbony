@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-barcodes-7.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-barcodes-7.0.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-barcodes-7.0.0-sources.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-font-asian-7.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-font-asian-7.0.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-forms-7.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-forms-7.0.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-forms-7.0.0-sources.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-hyph-7.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-hyph-7.0.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-io-7.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-io-7.0.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-io-7.0.0-sources.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-kernel-7.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-kernel-7.0.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-kernel-7.0.0-sources.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-layout-7.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-layout-7.0.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-layout-7.0.0-sources.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-pdfa-7.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-pdfa-7.0.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-pdfa-7.0.0-sources.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-pdftest-7.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-pdftest-7.0.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-pdftest-7.0.0-sources.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-sign-7.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-sign-7.0.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itext7-sign-7.0.0-sources.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/iText7-7.0.0/itextpdf-5.4.1.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/mariadb-java-client-1.1.7-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/mariadb-java-client-1.1.8.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA_JURGEN/biblioteki/mariadb-java-client-2.1.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
