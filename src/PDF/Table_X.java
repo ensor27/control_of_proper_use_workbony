@@ -35,12 +35,12 @@ public class Table_X {
 	}
 	
 	
-	void add(String name,String workernumber,String regime, String nest){
+	void add(String name,String workernumber,String regime, String number, String nest){
 		this.nameworker.add(name);
 		this.number.add(workernumber);
 		this.regime.add(regime);
 		this.nests.add(nest);
-		this.idcardno.add(null);
+		this.idcardno.add(number);
 	}
 
 	

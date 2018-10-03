@@ -120,10 +120,6 @@ public class Main_class {
 			System.setOut(ps); 
 			System.setOut(console);
 		//end creation file
-			
-		
-	        
-	     
       
         //get all divisions in FAT
 	        ArrayList<String> nests 		= new ArrayList<String>();
@@ -146,11 +142,13 @@ public class Main_class {
 		
 		//fill table
 			for(int i=0; i<nests.size();i++){
-				   String sql20 = "SELECT pracownicy.NAAM , Werknemer, WERKREGIME FROM fatdb.pracownicy WHERE nest ='"+ nests.get(i) +"' AND DATUMUITDIENST IS NULL AND NAAM NOT LIKE  'AWARIA%'" ;
+					String sql20 = "SELECT pracownik.NAAM , pracownik.Werknemer as HACO_ERP_NR, pracownik.WERKREGIME, "
+									+ "(select id_karty from fat.cards_name_surname_nrhacosoft where HacoSoftnumber = pracownik.Werknemer) as IDKAART "
+									+ "FROM fatdb.pracownicy pracownik WHERE nest ='"+ nests.get(i) +"' AND DATUMUITDIENST IS NULL AND NAAM NOT LIKE  'AWARIA%'";
 				   Statement st20 = connection.createStatement();
 				   ResultSet rs20 = st20.executeQuery(sql20);
 				   while(rs20.next()){
-						 table.add(rs20.getString("NAAM"), rs20.getString("WERKNEMER"), rs20.getString("WERKREGIME"), nests.get(i));;
+						 table.add(rs20.getString("NAAM"), rs20.getString("HACO_ERP_NR"), rs20.getString("WERKREGIME"), rs20.getNString("IDKAART"), nests.get(i));;
 						 System.setOut(ps);
 						 System.out.println(nests.get(i) + " <NOTHING> " + rs20.getString("NAAM") + " " + rs20.getString("WERKNEMER") + " " + rs20.getString("WERKREGIME")  );
 						 
@@ -159,17 +157,7 @@ public class Main_class {
 				   rs20.close();
 			}// END FOR
 			
-			for(int i=0; i<table.size();i++){
-				 	String sql25 = "select id_karty from fat.cards_name_surname_nrhacosoft where HacoSoftnumber = " + table.number.get(i);
-					Statement st25 = connection.createStatement();
-					ResultSet rs25 = st25.executeQuery(sql25);
-					while(rs25.next()){
-						
-						table.idcardno.set(i, rs25.getString(1));
-					}
-					st25.close();
-					rs25.close();
-			}//END FOR
+			
 		//END FILL TABLE
 	
 		//table.display(ps);
@@ -214,7 +202,6 @@ public class Main_class {
 					//System.out.println(nest + " <NAME> " + "name: " + worknotes.nameworker + " on day: " + worknotes.day );
 					
 				//collecting all worknotes
-					//String sql30 = "SELECT WERKBON,BEGINUUR,BEGINMIN,EINDUUR,EINDMIN ,STATUS,WERKPOST, CFOMSCHRIJVING ,CFARTIKELCODE  FROM rejestracja where werknemer='"+ table.number.get(i)  +"' and datum ='" + worknotes.day +"' ORDER BY BEGINUUR ASC, BEGINMIN";
 					String sql30 = "SELECT w.datum ,w.WERKBONNUMMER, BEGINTIJDH , BEGINTIJDM60 , EINDTIJDH , EINDTIJDM60 , w.STATUS "
 									+ "	, w.WERKPOST, r.OMSCHRIJVING , r.ARTIKELCODE  FROM werkuren w  left Join werkbon r  "
 									+ "on w.WERKBONNUMMER=r.WERKBONNUMMER  "
@@ -275,9 +262,13 @@ public class Main_class {
 				    ResultSet rs40 = st40.executeQuery(sql40);
 				    ArrayList<String> in_out 		= new ArrayList<String>();
 				    ArrayList<String> datum 		= new ArrayList<String>();
+				    String in = null;
+				    String out = null;
+				    pdfEntrance += nest + " <EMPTY>\r\n";
 				    while(rs40.next()){
 				    		in_out.add(rs40.getString(1));
 				    		datum.add(rs40.getString(2));
+				    		
 				    } //END WHILE
 				    st40.close();
 				    rs40.close();	
@@ -553,6 +544,8 @@ public class Main_class {
 					            	        	 		cellspace.setPhrase(new Phrase("______________________________________________________________________"));
 						            	       	        tabPDF.addCell(cellspace);
 					            	        	 break;
+					            	        	 
+					            	        	 
 					            	         case "<WORKNOTES>":
 					            	        	 	//pfdWorknote += nest + " <WORKNOTES> " + rs30.getString(1)+ " "+ rs30.getString(6) +" "+  String.format("%02d:%02d<==>%02d:%02d",rs30.getInt(2), rs30.getInt(3), rs30.getInt(4), rs30.getInt(5)) 
 								    	 			//					+" "+ rs30.getString(9)+ " "+ rs30.getString(8) +" \r\n";
@@ -619,6 +612,8 @@ public class Main_class {
 					            					
 					            					
 					            	        	 break;
+					            	        	 
+					            	        	 
 					            	         case "<PRESENTS>":
 					            	        	 	
 					            	    	      	PdfPCell presentCell = new PdfPCell();
@@ -643,6 +638,8 @@ public class Main_class {
 						            					tabPDF.addCell(presentCell); 
 					            					
 					            	             break;
+					            	             
+					            	             
 					            	         case "<NO_DATA>":  //ex W1/1B <NO_DATA>  2018-08-22 Wednesday 		  NO DATA  
 					            	        	 	String noData ="";
 					            	        	 	for(int h=2; h<words.length;h++){ noData += words[h] + " "; }
@@ -657,6 +654,8 @@ public class Main_class {
 							            	        	 noDataCell.setPhrase(new Phrase(noData, blue));
 							            	       	     tabPDF.addCell(noDataCell);
 					            	             break;
+					            	             
+					            	             
 					            	         case "<NO_DATA_RED>":  //ex W1/1B <NO_DATA>  2018-08-22 Wednesday 		  NO DATA  
 					            	        	 	String noData1 ="";
 					            	        	 	for(int h=2; h<words.length;h++){ noData1 += words[h] + " "; }
@@ -671,6 +670,8 @@ public class Main_class {
 							            	        	 noDataCell1.setPhrase(new Phrase(noData1, red));
 							            	       	     tabPDF.addCell(noDataCell1);
 					            	             break;
+					            	             
+					            	             
 					            	         case "<INFO>":
 					            	        	 String info ="";
 					            	        	 	for(int h=2; h<words.length;h++){ info += words[h] + " "; }
@@ -685,6 +686,8 @@ public class Main_class {
 						            	        	 	infoCell.setPhrase(new Phrase(info,font));
 								            	       	tabPDF.addCell(infoCell);
 					            	             break;
+					            	             
+					            	             
 					            	         case "<INFO_RED>":
 					            	        	 	info ="";
 					            	        	 	for(int h=2; h<words.length;h++){ info += words[h] + " "; }
@@ -698,7 +701,9 @@ public class Main_class {
 					            	        	 		infoCellred.setBorder(Rectangle.NO_BORDER);
 					            	        	 		infoCellred.setPhrase(new Phrase(info,red));
 								            	       	tabPDF.addCell(infoCellred);
-					            	             break;    
+					            	             break;  
+					            	             
+					            	             
 					            	         case "<DAY>":
 					            	        	 	info ="";
 					            	        	 	for(int h=2; h<words.length;h++){ info += words[h] + " "; }
@@ -713,6 +718,8 @@ public class Main_class {
 						            	        	 	dayCell.setPhrase(new Phrase(info,blue));
 								            	       	tabPDF.addCell(dayCell);
 					            	             break;
+					            	             
+					            	             
 					            	         case "<EMPTY>":
 						            	        	 PdfPCell emptyCell = new PdfPCell();
 							            	        	 emptyCell.setMinimumHeight(10);
@@ -724,6 +731,8 @@ public class Main_class {
 							            	        	 emptyCell.setPhrase(new Phrase(""));
 						            	       	         tabPDF.addCell(emptyCell);
 						            	         break;
+						            	         
+						            	         
 					            	         case "<AktivRed>":   
 					            	        	 
 					            	        	 PdfPCell alertCell = new PdfPCell();
@@ -736,6 +745,7 @@ public class Main_class {
 							            	        	 alertCell.setPhrase(new Phrase("                  Missing data to be completed for next time sections ....", red));
 						            	       	         tabPDF.addCell(alertCell);
 					            	       	    break;
+					            	       	    
 					            	       	    
 					            	         case "<NOTHING>":   
 					            	        	 
