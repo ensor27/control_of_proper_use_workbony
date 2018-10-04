@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class Table_X {
 	
   
+	private static final String NULL = null;
 	// FIELDS
 	
 	String name;
@@ -35,12 +36,12 @@ public class Table_X {
 	}
 	
 	
-	void add(String name,String workernumber,String regime, String number, String nest){
+	void add(String name,String workernumber,String regime,  String nest){
 		this.nameworker.add(name);
 		this.number.add(workernumber);
 		this.regime.add(regime);
 		this.nests.add(nest);
-		this.idcardno.add(number);
+		this.idcardno.add(NULL);
 	}
 
 	

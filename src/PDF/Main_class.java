@@ -142,20 +142,36 @@ public class Main_class {
 		
 		//fill table
 			for(int i=0; i<nests.size();i++){
-					String sql20 = "SELECT pracownik.NAAM , pracownik.Werknemer as HACO_ERP_NR, pracownik.WERKREGIME, "
-									+ "(select id_karty from fat.cards_name_surname_nrhacosoft where HacoSoftnumber = pracownik.Werknemer) as IDKAART "
-									+ "FROM fatdb.pracownicy pracownik WHERE nest ='"+ nests.get(i) +"' AND DATUMUITDIENST IS NULL AND NAAM NOT LIKE  'AWARIA%'";
+				String sql20 = "SELECT pracownicy.NAAM , Werknemer, WERKREGIME FROM fatdb.pracownicy WHERE nest ='"+ nests.get(i) +"' AND DATUMUITDIENST IS NULL AND NAAM NOT LIKE  'AWARIA%'" ;
+				
 				   Statement st20 = connection.createStatement();
 				   ResultSet rs20 = st20.executeQuery(sql20);
 				   while(rs20.next()){
-						 table.add(rs20.getString("NAAM"), rs20.getString("HACO_ERP_NR"), rs20.getString("WERKREGIME"), rs20.getNString("IDKAART"), nests.get(i));;
+						 table.add(rs20.getString("NAAM"), rs20.getString("WERKNEMER"), rs20.getString("WERKREGIME"), nests.get(i));;
 						 System.setOut(ps);
 						 System.out.println(nests.get(i) + " <NOTHING> " + rs20.getString("NAAM") + " " + rs20.getString("WERKNEMER") + " " + rs20.getString("WERKREGIME")  );
-						 
 				   }
-				   st20.close();
+				   st20.close();	 
 				   rs20.close();
 			}// END FOR
+	
+			   
+		
+		for(int i=0; i<table.size();i++){
+			 	String sql25 = "select id_karty from fat.cards_name_surname_nrhacosoft where HacoSoftnumber = " + table.number.get(i);
+				Statement st25 = connection.createStatement();
+				ResultSet rs25 = st25.executeQuery(sql25);
+				while(rs25.next()){
+					
+					table.idcardno.set(i, rs25.getString(1));
+				}
+				st25.close();
+				rs25.close();
+		}//END FOR
+			
+			
+			
+			
 			
 			
 		//END FILL TABLE
